@@ -36,8 +36,11 @@ Task("Build")
     if(IsRunningOnWindows())
     {
       // Use MSBuild
-      MSBuild("./src/Example.sln", settings =>
-        settings.SetConfiguration(configuration));
+      MSBuild("./src/Example.sln", settings => settings
+		.SetConfiguration(configuration)
+		.WithProperty("firstProperty", "one")
+		.WithProperty("secondProperty", "two")
+		.SetVerbosity(Verbosity.Diagnostic));
     }
     else
     {
